@@ -78,7 +78,7 @@ class SimpleSession(SSHChannel):
         return True
     # pylint: enable=unused-argument
 
-class SimpleRealm(object):
+class SimpleRealm():
     # pylint: disable=invalid-name,unused-argument
     @staticmethod
     def requestAvatar(avatar_id, mind, *interfaces):

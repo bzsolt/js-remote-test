@@ -26,7 +26,7 @@ def alarm_handler(_signum, _frame):
     raise TimeoutException
 
 
-class TelnetConnection(object):
+class TelnetConnection():
     '''
     The telnet communication wrapper.
     '''
@@ -59,7 +59,7 @@ class TelnetConnection(object):
         '''
         Send command over the serial port.
         '''
-        if isinstance(cmd, unicode):
+        if isinstance(cmd, str):
             cmd = cmd.encode('utf8')
         try:
             self.telnet.write('%s\n' % cmd)

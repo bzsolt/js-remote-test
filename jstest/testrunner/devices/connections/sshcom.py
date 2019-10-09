@@ -18,7 +18,7 @@ import paramiko
 from jstest.common.utils import TimeoutException
 
 
-class SSHConnection(object):
+class SSHConnection():
     '''
     The serial communication wrapper.
     '''

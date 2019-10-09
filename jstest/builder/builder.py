@@ -55,7 +55,7 @@ def save_artifacts(modules):
             utils.copy(src, dst)
 
 
-class Builder(object):
+class Builder():
     '''
     A basic builder class to build all the required modules.
     '''

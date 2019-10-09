@@ -19,6 +19,7 @@ from __future__ import print_function
 import argparse
 import os
 import subprocess
+import sys
 
 
 TRAVIS_BUILD_PATH = os.environ['TRAVIS_BUILD_DIR']
@@ -95,7 +96,7 @@ def exec_command(cmd, args):
 
     if exitcode != 0:
         print('[Failed - %s] %s %s' % (exitcode, cmd, ' '.join(args)))
-        exit(1)
+        sys.exit(1)
 
 
 def exec_docker(cmd):

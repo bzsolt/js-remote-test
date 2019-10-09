@@ -18,7 +18,7 @@ import time
 from jstest.common import console, utils
 from jstest.testrunner import utils as testrunner_utils
 
-class RemoteDevice(object):
+class RemoteDevice():
     '''
     Base class of all the device classes.
     '''

@@ -48,9 +48,6 @@ class SerialDevice(RemoteDevice):
             console.fail('Please use the --device-id to select the device.')
 
     def reset(self):
-        '''
-        Dummy method.
-        '''
         pass
 
     def login(self):

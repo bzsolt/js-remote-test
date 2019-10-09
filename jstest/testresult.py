@@ -18,7 +18,7 @@ import pyrebase
 from jstest.common import console, paths, utils
 
 
-class TestResult(object):
+class TestResult():
     '''
     Basic class to store the build and testrunner results.
     '''
@@ -49,7 +49,7 @@ class TestResult(object):
             'profiles/target-es2015subset-profile-build': 'target-es2015subset-profile'
         }
 
-        for job_id, build_path in self.results.iteritems():
+        for job_id, build_path in self.results.items():
             # Append the binary information.
             if 'test-build' in job_id:
                 filename = utils.join(build_path, 'testresults.json')

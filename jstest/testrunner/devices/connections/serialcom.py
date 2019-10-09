@@ -18,7 +18,7 @@ import serial
 from jstest.common.utils import TimeoutException
 
 
-class SerialConnection(object):
+class SerialConnection():
     '''
     The serial communication wrapper.
     '''
@@ -57,7 +57,7 @@ class SerialConnection(object):
         '''
         Send data to the serial port.
         '''
-        if isinstance(data, unicode):
+        if isinstance(data, str):
             data = data.encode('utf8')
 
         return self.serial.write(data + '\n')
@@ -72,7 +72,7 @@ class SerialConnection(object):
         '''
         Send command over the serial port.
         '''
-        if isinstance(cmd, unicode):
+        if isinstance(cmd, str):
             cmd = cmd.encode('utf8')
 
         self.serial.write(cmd + '\n')

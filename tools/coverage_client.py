@@ -80,7 +80,7 @@ def arguments_parse():
     return args
 
 
-class JerryBreakpoint(object):
+class JerryBreakpoint():
     def __init__(self, line, offset, function):
         self.line = line
         self.offset = offset
@@ -88,7 +88,7 @@ class JerryBreakpoint(object):
         self.active_index = -1
 
 
-class JerryFunction(object):
+class JerryFunction():
     def __init__(self, is_func, byte_code_cp, source, source_name,
                  line, column, name, lines, offsets):
         self.is_func = bool(is_func)
@@ -112,7 +112,7 @@ class JerryFunction(object):
             self.offsets[offset] = breakpoint
 
 
-class Multimap(object):
+class Multimap():
     def __init__(self):
         self.map = {}
 
@@ -139,7 +139,7 @@ class Multimap(object):
         return "Multimap(%r)" % (self.map)
 
 
-class JerryDebugger(object):
+class JerryDebugger():
     # pylint: disable=too-many-statements
     def __init__(self, address, coverage_output):
 
@@ -391,7 +391,7 @@ class JerryDebugger(object):
             if buffer_type == JERRY_DEBUGGER_PARSE_ERROR:
                 return ""
 
-            elif buffer_type in [JERRY_DEBUGGER_SOURCE_CODE, JERRY_DEBUGGER_SOURCE_CODE_END]:
+            if buffer_type in [JERRY_DEBUGGER_SOURCE_CODE, JERRY_DEBUGGER_SOURCE_CODE_END]:
                 source_code += data[3:]
 
             elif buffer_type in [JERRY_DEBUGGER_SOURCE_CODE_NAME,
@@ -504,7 +504,7 @@ class JerryDebugger(object):
         nearest_offset = -1
 
         for current_offset in function.offsets:
-            if current_offset <= offset and current_offset > nearest_offset:
+            if nearest_offset < current_offset <= offset:
                 nearest_offset = current_offset
 
         return (function.offsets[nearest_offset], False)
@@ -533,7 +533,8 @@ def main():
 
         if result == DEBUGGER_ACTION_END:
             break
-        elif result == DEBUGGER_ACTION_PROMPT:
+
+        if result == DEBUGGER_ACTION_PROMPT:
             prompt.onecmd('c')
 
         continue
@@ -557,7 +558,7 @@ if __name__ == "__main__":
         MSG = str(error_msg)
         if ERRNO == 111:
             sys.exit("Failed to connect to the JerryScript debugger.")
-        elif ERRNO == 32 or ERRNO == 104:
+        elif ERRNO in (32, 104):
             sys.exit("Connection closed.")
         else:
             sys.exit("Failed to connect to the JerryScript debugger.\nError: %s" % (MSG))

@@ -26,7 +26,6 @@ class TimeoutException(Exception):
     '''
     Custom exception in case of timeout.
     '''
-    pass
 
 
 def exec_builtin(cwd, cmd, args, env):

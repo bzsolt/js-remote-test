@@ -15,7 +15,7 @@
 from jstest.common import utils, paths
 
 
-class Skiplist(object):
+class Skiplist():
     '''
     Skiplist class for IoT.js and JerryScript.
     '''

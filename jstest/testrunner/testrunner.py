@@ -30,7 +30,7 @@ def read_testsets(env):
     return testrunner_utils.read_test_files(env)
 
 
-class TestRunner(object):
+class TestRunner():
     '''
     Testrunner class.
     '''

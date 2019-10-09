@@ -17,6 +17,7 @@
 import os
 import re
 import subprocess
+import sys
 
 TOOLS_PATH = os.path.dirname(os.path.abspath(__file__))
 JSREMOTE_ROOT = os.path.join(TOOLS_PATH, '..')
@@ -41,7 +42,7 @@ def recursive_check(directory=JSREMOTE_ROOT):
             if re.match(PYFILE_REGEX, f):
                 path_to_check = os.path.join(subdir, f)
                 print('%s%s%s' % (TERMINAL_YELLOW, path_to_check, TERMINAL_EMPTY))
-                exitcode = subprocess.call(['python2', '-m', 'pylint', path_to_check]) or exitcode
+                exitcode = subprocess.call(['python', '-m', 'pylint', path_to_check]) or exitcode
 
     return exitcode
 
@@ -51,7 +52,7 @@ def main():
     for path in [JSTEST_PATH, TOOLS_PATH]:
         exitcode = recursive_check(path) or exitcode
 
-    exit(exitcode)
+    sys.exit(exitcode)
 
 
 if __name__ == '__main__':

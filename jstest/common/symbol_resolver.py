@@ -39,7 +39,7 @@ def resolve(node, env):
     if isinstance(node, list):
         return resolve_list(node, env)
 
-    if isinstance(node, (str, unicode)):
+    if isinstance(node, (str, str)):
         return resolve_string(node, env)
 
     return node
